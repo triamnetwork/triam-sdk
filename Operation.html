@@ -76,6 +76,9 @@ Use one of static methods to create operations:
 * `<a href="Operation.html#.accountMerge">Operation.accountMerge</a>`
 * `<a href="Operation.html#.inflation">Operation.inflation</a>`
 * `<a href="Operation.html#.manageData">Operation.manageData</a>`
+* `<a href="Operation.html#.createAsset">Operation.createAsset"</a>`
+* `<a href="Operation.html#.changeAsset">Operation.changeAsset</a>`
+* `<a href="Operation.html#.limitAsset">Operation.limitAsset</a>`
 </div>
 
 
@@ -4487,6 +4490,865 @@ It's possible to set/clear multiple flags at once using logical or.
 
 
 </div>
+
+<!-- createAsset -->
+<div class="section-method">
+
+    
+
+    <h4 class="name" id=".createAsset"><span class="type-signature">(static) </span>createAsset<span class="signature">(opts)</span><span class="type-signature"> &rarr; {xdr.CreateAssetOp}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Create a createAsset operation. It has token's info for setting token fee in exchange.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="node_modules_stellar-base_src_operation.js.html">node_modules/stellar-base/src/operation.js</a>, <a href="node_modules_stellar-base_src_operation.js.html#line568">line 568</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>asset</code></td>
+            
+
+            <td class="type">
+            
+                
+                <span class="param-type"><code><a href="Asset.html">Asset</a></code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                It contains two fields: issuer(PublicKey) and asset code (string). We will create the new unique token from asset code.
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beneficiary</code></td>
+            
+
+            <td class="type">
+            
+                
+                <span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                It is the holding fee wallet which will receive token fee from exchange using that token. Length: empty or 56 characters
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fee</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>uint32</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                Rate of exchange's amount need to pay for token fee. Range: 0 - 10000. Formula: Token fee = fee * exchange's amount/10000.
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ratio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>uint32</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                When we starts issuing the token into market, our accounts will be locked an amount of RIA corresponding. Ratio will be used by formula: RIA's amount for locking = amount for issuing / ratio.
+                
+            </td>
+        </tr>
+        <tr>
+            
+            <td class="name"><code>minfee</code></td>
+        
+
+        <td class="type">
+        
+            
+<span class="param-type"><code>int64</code></span>
+
+
+        
+        </td>
+
+        
+            <td class="attributes">
+            
+            
+
+            
+
+            
+            </td>
+        
+
+        
+
+        <td class="description last">
+            A minimum amount for token fee.
+            
+        </td>
+    </tr>
+
+    
+    </tbody>
+</table>
+
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>xdr.CreateAssetOp</code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
+
+</div>
+
+<!--changeAsset-->
+<div class="section-method">
+
+    
+
+    <h4 class="name" id=".changeAsset"><span class="type-signature">(static) </span>changeAsset<span class="signature">(opts)</span><span class="type-signature"> &rarr; {xdr.ChangeAssetOp}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Change the beneficiary (the holding fee wallet)
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="node_modules_stellar-base_src_operation.js.html">node_modules/stellar-base/src/operation.js</a>, <a href="node_modules_stellar-base_src_operation.js.html#line617">line 617</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>asset</code></td>
+            
+
+            <td class="type">
+            
+                
+                <span class="param-type"><code><a href="Asset.html">Asset</a></code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                The token will be changed.
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beneficiary</code></td>
+            
+
+            <td class="type">
+            
+                
+                <span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                The new beneficiary of token
+                
+            </td>
+        </tr>
+
+        
+    </tbody>
+</table>
+
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>xdr.ChangeAssetOp</code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
+
+</div>
+
+<!--limitAsset-->
+
+<div class="section-method">
+
+    
+
+    <h4 class="name" id=".limitAsset"><span class="type-signature">(static) </span>limitAsset<span class="signature">(opts)</span><span class="type-signature"> &rarr; {xdr.LimitAssetOp}</span></h4>
+
+    
+
+
+
+<div class="description">
+    LimitAsset is used to stop issuing more amount of the tokens. This will prevent the inflation.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="node_modules_stellar-base_src_operation.js.html">node_modules/stellar-base/src/operation.js</a>, <a href="node_modules_stellar-base_src_operation.js.html#line655">line 655</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>asset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code><a href="Asset.html">Asset</a></code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                The token will be limited
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>islimited</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>uint32</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                Values: 0 or 1. 1 for limiting. 0 for countinue issuing.
+                
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>xdr.LimitAssetOp</code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
+
+</div>
+
+<!--end LimitAsset-->
+
+
         
     
 
